@@ -1,0 +1,50 @@
+
+<h2>Gestión de Productos</h2>
+
+<form action="/admin/products/new" method="POST" style="margin-bottom:1.5rem;">
+  <label for="title"><strong>Título:</strong></label>
+  <input type="text" id="title" name="title" required style="margin-right:1rem;">
+  <label for="description"><strong>Descripción:</strong></label>
+  <input type="text" id="description" name="description" required style="margin-right:1rem;">
+  <label for="category"><strong>Categoría:</strong></label>
+  <input type="text" id="category" name="category" required style="margin-right:1rem;">
+  <label for="code"><strong>Código:</strong></label>
+  <input type="text" id="code" name="code" required style="margin-right:1rem;">
+  <label for="price"><strong>Precio:</strong></label>
+  <input type="number" id="price" name="price" step="0.01" min="0" required style="margin-right:1rem; width:80px;">
+  <label for="stock"><strong>Stock:</strong></label>
+  <input type="number" id="stock" name="stock" min="0" required style="margin-right:1rem; width:60px;">
+  <button type="submit" style="font-weight:bold;">Agregar</button>
+</form>
+
+{{#if products.length}}
+  <table style="width:100%; border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th style="border-bottom:1px solid #ccc; text-align:left;">Título</th>
+        <th style="border-bottom:1px solid #ccc; text-align:left;">Código</th>
+        <th style="border-bottom:1px solid #ccc; text-align:right;">Precio</th>
+        <th style="border-bottom:1px solid #ccc; text-align:right;">Stock</th>
+        <th style="border-bottom:1px solid #ccc; text-align:right;">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td>{{title}}</td>
+          <td>{{code}}</td>
+          <td style="text-align:right;">${{price}}</td>
+          <td style="text-align:right;">{{stock}}</td>
+          <td style="text-align:right;">
+            <a href="/admin/products/edit/{{_id}}" style="margin-right:1rem;">Editar</a>
+            <form action="/admin/products/delete/{{_id}}" method="POST" style="display:inline;">
+              <button type="submit" style="color:red;">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No hay productos registrados.</p>
+{{/if}}

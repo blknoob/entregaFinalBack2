@@ -1,0 +1,43 @@
+<h2>Mis Tickets</h2>
+
+{{#if tickets.length}}
+  <table style="width:100%; border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th style="border-bottom:1px solid #ccc; text-align:left;">Código</th>
+        <th style="border-bottom:1px solid #ccc; text-align:right;">Fecha</th>
+        <th style="border-bottom:1px solid #ccc; text-align:right;">Total</th>
+        <th style="border-bottom:1px solid #ccc; text-align:right;">Productos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each tickets}}
+        <tr>
+          <td>{{code}}</td>
+          <td style="text-align:right;">{{createdAt}}</td>
+          <td style="text-align:right;">${{amount}}</td>
+          <td style="text-align:right;">
+            {{#if products.length}}
+              <ul style="margin:0; padding-left:1em;">
+                {{#each products}}
+                  <li>
+                    {{#if product.title}}
+                      {{product.title}} (x{{quantity}})
+                    {{else}}
+                      Producto: {{product}} (x{{quantity}})
+                    {{/if}}
+                  </li>
+                {{/each}}
+              </ul>
+              <div style="font-size:0.9em; color:#888;">Total productos: {{products.length}}</div>
+            {{else}}
+              Sin productos
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>No tienes tickets generados aún.</p>
+{{/if}}

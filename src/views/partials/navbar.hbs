@@ -1,0 +1,18 @@
+<nav>
+  <a href="/">Inicio</a>
+  <a href="/login">Login</a>
+  <a href="/register">Registro</a>
+
+  {{#if user}}
+    <span style="margin-right:1rem; font-weight:bold;">Bienvenido
+      {{user.first_name}}
+      {{user.last_name}}</span>
+    {{#if (eq user.role "admin")}}
+      <a href="/admin/panel">Panel Admin</a>
+    {{/if}}
+    <a href="/current">Perfil</a>
+    <a href="/cart">Carrito</a>
+    <a href="/tickets">Mis tickets</a>
+    <a href="/logout">Cerrar sesión</a>
+  {{/if}}
+</nav>

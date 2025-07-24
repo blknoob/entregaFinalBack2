@@ -1,0 +1,12 @@
+
+<h1>Bienvenido a la tienda Backend II</h1>
+
+{{#if products}}
+  <div class="product-list">
+    {{#each products}}
+      {{> productCard}}
+    {{/each}}
+  </div>
+{{else}}
+  <p>No hay productos disponibles.</p>
+{{/if}}
