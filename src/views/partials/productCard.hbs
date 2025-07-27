@@ -1,15 +1,14 @@
-
-<div class="product-card" style="border:1px solid #ddd; border-radius:6px; padding:1rem; margin-bottom:1rem;">
-  <h3>{{title}}</h3>
-  <p><strong>Precio:</strong> ${{price}}</p>
-  <p>{{description}}</p>
+<div class="product-card">
+  <h3 class="product-title">{{title}}</h3>
+  <p class="product-price"><strong>Precio:</strong> ${{price}}</p>
+  <p class="product-desc">{{description}}</p>
   {{#if stock}}
-    <p><strong>Stock:</strong> {{stock}}</p>
-    <form action="/cart/add" method="POST" style="margin-top:0.5rem;">
+    <p class="product-stock"><strong>Stock:</strong> {{stock}}</p>
+    <form action="/cart/add" method="POST" class="product-form">
       <input type="hidden" name="productId" value="{{_id}}" />
       <button type="submit">Agregar al carrito</button>
     </form>
   {{else}}
-    <p style="color:red;">Sin stock</p>
+    <p class="product-nostock">Sin stock</p>
   {{/if}}
 </div>

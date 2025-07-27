@@ -44,6 +44,8 @@ class UsersController {
         _id: response._id,
         email: response.email,
         role: response.role,
+        first_name: response.first_name,
+        last_name: response.last_name,
       });
       res.cookie("access_token", token, {
         httpOnly: true,
@@ -78,7 +80,14 @@ class UsersController {
         return res.redirect("/login");
       }
 
-      res.cookie("access_token", response.token, {
+      const token = generateToken({
+        _id: response.user._id,
+        email: response.user.email,
+        role: response.user.role,
+        first_name: response.user.first_name,
+        last_name: response.user.last_name,
+      });
+      res.cookie("access_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 24 * 60 * 60 * 1000,
@@ -92,7 +101,7 @@ class UsersController {
           status: "success",
           message: "Login exitoso",
           user: new UserDTO(response.user),
-          token: response.token,
+          token: token,
         });
       }
 

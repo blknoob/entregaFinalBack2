@@ -18,13 +18,6 @@ class CartsController {
       const userId = req.user._id;
       const { productId } = req.params;
       const { quantity } = req.body;
-
-      console.log("🛒 Agregando producto al carrito:", {
-        userId,
-        productId,
-        quantity,
-      });
-
       const cart = await cartsService.getUserCart(userId);
       const result = await cartsService.addProductToCart(
         cart._id,

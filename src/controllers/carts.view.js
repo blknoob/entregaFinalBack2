@@ -17,7 +17,7 @@ class CartsViewController {
           return { ...item, product: prod };
         });
       }
-      console.log("DEBUG plainCart:", JSON.stringify(plainCart, null, 2));
+
       res.render("users/cart", { cart: plainCart });
     } catch (error) {
       res.status(500).send("Error mostrando el carrito");
